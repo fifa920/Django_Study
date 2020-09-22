@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+    <h2>게시판</h2>
+    <a href="/articles/new/"> 글쓰기</a>
+    {% for article in articles %}
+        <p>ID : {{article.id}}</p>
+        <p>Title : {{article.title}}</p>
+        <a href="/articles/{{article.pk}}/">글 보러가기</a>
+        <hr>
+    {% endfor %}
+
+{% endblock %}

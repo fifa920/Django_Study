@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block body %}
+    <h1>Detail Page</h1>
+    <p>{{article.pk}} 번 글</p>
+    <p>제목 : {{article.title}}</p>
+    <p>내용 : {{article.content}}</p>
+    <p>Create : {{article.created_at}}</p>
+    <p>Updated : {{article.updated_at}}</p>
+    <a href="/articles/{{article.pk}}/delete/">삭제하기</a> <br>
+    <a href="/articles/{{article.pk}}/edit/">수정하기</a>
+{% endblock %}

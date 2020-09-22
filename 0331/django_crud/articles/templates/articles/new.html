@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>글쓰기</h1>
+    <form action="/articles/create/" method="POST">
+        {% csrf_token %}
+        <!-- name은 form 에서 필수이다, model의 이름을 그대로 가져오기 -->
+        제목 : <input type="text" name="title">
+        내용 : <input type="text" name="content">
+        <input type="submit" value="작성완료">
+    </form>
+</body>
+</html>
