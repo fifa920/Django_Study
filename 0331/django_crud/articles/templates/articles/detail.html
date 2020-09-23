@@ -6,6 +6,6 @@
     <p>Created : {{article.created_at}}</p>
     <p>Updated : {{article.updated_at}}</p>
     <a href="/articles/">목록 보기 </a>
-    <a href="/articles/{{article.pk}}/delete/">삭제</a>
-    <a href="/articles/{{article.pk}}/edit/">수정</a>
+    <a href="{% url 'articles:delete' article.pk %}">삭제</a>
+    <a href="{% url 'articles:edit' article.pk %}">수정</a>
 {% endblock %}

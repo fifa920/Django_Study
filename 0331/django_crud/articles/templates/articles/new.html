@@ -7,7 +7,7 @@
 </head>
 <body>
     <h1>글쓰기</h1>
-    <form action="/articles/create/" method="POST">
+    <form action="{% url 'articles:create' %}" method="POST">
         {% csrf_token %}
         <!-- name은 form 에서 필수이다, model의 이름을 그대로 가져오기 -->
         제목 : <input type="text" name="title">
