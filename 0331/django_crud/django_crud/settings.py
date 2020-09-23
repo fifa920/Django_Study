@@ -110,3 +110,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
 STATIC_URL = '/static/'
+# app 들이 모두 공유하게끔 app 폴더와 같은 위치에 static 폴더를 넣을 때
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static')
+]
