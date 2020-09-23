@@ -1,11 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
+{% extends 'base.html' %}
+{% block body %}
     <h1>{{ article.pk }} 번 글</h1>
     <p>Title : {{ article.title }} </p>
     <p>Content : {{article.content}}</p>
@@ -14,5 +8,4 @@
     <a href="/articles/">목록 보기 </a>
     <a href="/articles/{{article.pk}}/delete/">삭제</a>
     <a href="/articles/{{article.pk}}/edit/">수정</a>
-</body>
-</html>
+{% endblock %}
