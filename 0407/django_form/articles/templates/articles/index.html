@@ -7,6 +7,7 @@
         <p>제목 : {{ article.title }}</p>
         <p>내용 : {{article.content }}</p>
         <p>생성시간 : {{ article.created_at }}</p>
+        <a href="{% url 'articles:detail' article.pk %}">상세보기</a>
         <hr>
 
     {% endfor %}

@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block body %}
+    <h1>{{ article.pk }} 번 째 글</h1>
+    <h2>제목 : {{article.title }}</h2>
+    <p>내용 : {{article.content }}</p>
+    <p>생성시간 : {{article.created_at }}</p>
+    <p>수정시간 : {{article.updated_at }}</p>
+    <a href="{% url 'articles:index' %}">목록보기</a>
+{% endblock %}
