@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
+from django.views.decorators.http import require_POST
 from .models import Article
 from .forms import ArticleForm
 
@@ -34,3 +35,10 @@ def detail(request, pk):
         'article':article
     }
     return render(request, 'articles/detail.html', context)
+    
+@require_POST
+def delete(request, pk):
+    article = get_object_or_404(Article, pk=pk)
+    article.delete()
+    return redirect(f'/articles/')
+
