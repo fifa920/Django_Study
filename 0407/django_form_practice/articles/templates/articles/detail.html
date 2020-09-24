@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block body %}
+    <div class="jumbotron jumbotron-fluid">
+        <div class="container">
+            <h1 class="display-4">{{ article.title}}</h1>
+            <p class="lead">{{ article.content }}</p>
+            <p class="lead">{{ article.created_at }}</p>
+            <p class="lead">{{ article.updated_at }}</p>
+        </div>
+    </div>
+    <form action="{% url 'articles:delete' article.pk %}" method="POST">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">삭제</button>
+        <a class="btn btn-dark" href="{% url 'articles:update' article.pk %}" role="button">수정하기</a>
+        <a class="btn btn-success" href="{% url 'articles:index' %}" role="button">목록보기</a>
+        
+    </form>
+    
+{% endblock %}

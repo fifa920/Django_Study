@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block body %}
+    <h2>게시판</h2>
+    <a class="btn btn-primary" href="{% url 'articles:create' %}" role="button">새 글쓰기</a>
+
+    
+    <table class="table">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Title</th>
+            <th scope="col">Created</th>
+            <th scope="col">Updated</th>
+          </tr>
+        </thead>
+    {% for article in articles %}
+        <tbody>
+          <tr>
+            <th scope="row">{{ article.pk }}</th>
+            <td><a href="{% url 'articles:detail' article.pk %}">{{ article.title}}</a></td>
+            <td>{{ article.created_at}}</td>
+            <td>{{ article.updated_at}}</td>
+          </tr>
+        </tbody>
+    {% endfor %}
+      </table>
+    
+{% endblock %}
