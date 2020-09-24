@@ -27,7 +27,7 @@ def create(request):
     context = {
         'form' : form
     }
-    return render(request, 'articles/create.html', context)
+    return render(request, 'articles/form.html', context)
 
 def detail(request, pk):
     article = get_object_or_404(Article, pk=pk)
@@ -35,10 +35,27 @@ def detail(request, pk):
         'article':article
     }
     return render(request, 'articles/detail.html', context)
-    
+
 @require_POST
 def delete(request, pk):
     article = get_object_or_404(Article, pk=pk)
     article.delete()
     return redirect(f'/articles/')
 
+def update(request, pk):
+    article = get_object_or_404(Article, pk=pk)
+    if request.method == "POST":
+        # instance = article 을 써주면 새 글생성이 아니라 기존 글을 가져와서 수정!
+        form = ArticleForm(request.POST, instance=article)
+        if form.is_valid():
+            article = form.save()
+            return redirect('articles:detail', article.pk)
+    else :
+        
+        # 수정시 해당 article의 instance를 반드시 넘겨줘야 한다.
+        form = ArticleForm(instance=article)
+    context = {
+        'form' : form
+    }
+    return render(request, 'articles/form.html', context)
+    
