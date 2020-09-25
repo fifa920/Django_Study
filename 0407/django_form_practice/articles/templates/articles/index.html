@@ -12,6 +12,7 @@
             <th scope="col">Title</th>
             <th scope="col">Created</th>
             <th scope="col">Updated</th>
+            <th scope="col">#</th>
           </tr>
         </thead>
     {% for article in articles %}
@@ -21,6 +22,11 @@
             <td><a href="{% url 'articles:detail' article.pk %}">{{ article.title}}</a></td>
             <td>{{ article.created_at}}</td>
             <td>{{ article.updated_at}}</td>
+            <td>
+                <form action="{% url 'articles:delete' article.pk %}" method="POST">
+                    {% csrf_token %}
+                    <button class="btn btn-danger" type="submit" >삭제</a></td>
+                </form>
           </tr>
         </tbody>
     {% endfor %}
