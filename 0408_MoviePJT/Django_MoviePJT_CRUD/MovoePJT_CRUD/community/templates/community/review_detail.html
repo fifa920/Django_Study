@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block body %}
+    <div class="jumbotron">
+        <h1 class="display-4">{{review.title}}</h1>
+        <p>{{review.created_at}}</p>
+        <p>{{review.updated_at}}</p>
+        <h3 class="display-5"> {{review.movie_title}}</h>
+        <hr class="my-4">
+        <p class="lead"> {{review.content}}</p>
+        <br>
+        <p>순위 : {{review.rank}}</p>
+        <a class="btn btn-primary btn-lg" href="{% url 'reviews:update' review.pk %}" role="button">수정</a>
+        <form action="{% url 'reviews:delete' review.pk %}" method="POST">
+            {% csrf_token %}
+            <button class="btn btn-danger" type="submit">삭제</a>
+        </form>
+    </div>
+{% endblock %}
