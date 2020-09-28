@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+
+{% block title %} 목록 {% endblock %}
+
+{% block body %}
+    {% for article in articles %}
+        <p>{{ article.pk }}</p>
+    {% endfor %}
+{% endblock %}
