@@ -17,7 +17,7 @@ def create(request):
         if form.is_valid():
             article = form.save()
             # form.save()
-            return redirect('articles:index')
+            return redirect('articles:detail', article.pk)
         messages.error(request, 'form 다시 확인 ㄱㄱ')
     else :
         form = ArticleForm()
@@ -25,3 +25,10 @@ def create(request):
         'form' : form
     }
     return render(request, 'articles/forms.html', context)
+
+def detail(request, pk):
+    article = get_object_or_404(Article, pk=pk)
+    context = {
+        'article' : article
+    }
+    return render(request, 'articles/detail.html', context)
