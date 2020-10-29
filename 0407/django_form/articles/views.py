@@ -51,7 +51,6 @@ def update(request, pk):
             article = form.save()
             return redirect('articles:detail', article.pk)
     else :
-        
         # 수정시 해당 article의 instance를 반드시 넘겨줘야 한다.
         form = ArticleForm(instance=article)
     context = {
