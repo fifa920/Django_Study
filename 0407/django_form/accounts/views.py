@@ -1,7 +1,8 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.models import User
-from django.contrib.auth import get_user_model, login
+from django.contrib.auth import get_user_model
+from django.contrib.auth import login as auth_login
 
 from .forms import CustomUserChangeForm
 
@@ -40,7 +41,7 @@ def login(request):
         form = AuthenticationForm(request, request.POST)
         if form.is_valid():
             # 장고 내부 auth.form 에 있는 login 함수를 꺼내쓴다.
-            login(request, form.get_user())
+            auth_login(request, form.get_user())
             return redirect('articles:index')
     else :         
         form = AuthenticationForm()
