@@ -4,11 +4,17 @@ from django.contrib.auth.models import User
 from django.contrib.auth import get_user_model
 from django.contrib.auth import login as auth_login
 from django.contrib.auth import logout as auth_logout
+from django.contrib.auth.decorators import login_required
 
 from .forms import CustomUserChangeForm
 
 # Create your views here.
 def signup(request):
+    # 로그인이 되어 있다면
+    if request.user.is_authenticated :
+        # 돌아가라....(redirect)
+        return redirect('articles:index')
+
     if request.method == 'POST':
         form = UserCreationForm(request.POST)
         if form.is_valid():
@@ -38,12 +44,15 @@ def update(request, pk):
     return render(request, 'accounts/update.html', context)
 
 def login(request):
+    if request.user.is_authenticated :
+        return redirect('articles:index')
     if request.method == 'POST' :
         form = AuthenticationForm(request, request.POST)
         if form.is_valid():
             # 장고 내부 auth.form 에 있는 login 함수를 꺼내쓴다.
+            # form.get_user() 은 Authentication 내에 있는 메소드
             auth_login(request, form.get_user())
-            return redirect('articles:index')
+            return redirect(request.GET.get('next') or 'articles:index')
     else :         
         form = AuthenticationForm()
     context = {
@@ -51,6 +60,9 @@ def login(request):
     }
     return render(request, 'accounts/login.html', context)
 
+@login_required
 def logout(request):
+    # 로그인이 되어 있으면 로그아웃하고
     auth_logout(request)
     return redirect('articles:index')
+    
