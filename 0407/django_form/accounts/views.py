@@ -5,6 +5,7 @@ from django.contrib.auth import get_user_model
 from django.contrib.auth import login as auth_login
 from django.contrib.auth import logout as auth_logout
 from django.contrib.auth.decorators import login_required
+from django.views.decorators.http import require_POST
 
 from .forms import CustomUserChangeForm
 
@@ -65,4 +66,9 @@ def logout(request):
     # 로그인이 되어 있으면 로그아웃하고
     auth_logout(request)
     return redirect('articles:index')
-    
+
+@require_POST
+@login_required
+def delete(request):
+    request.user.delete()
+    return redirect('articles:index')
