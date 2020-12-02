@@ -5,4 +5,5 @@ from .models import Review
 
 class ReviewAdmin(admin.ModelAdmin):
     list_display = ('title', 'movie_title', 'rank', 'content')
+    
 admin.site.register(Review, ReviewAdmin)
